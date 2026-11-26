@@ -1,3 +1,11 @@
+# Workspace v2.1
+- Quiet borderless surfaces, compact typography, category colors and circular FAB.
+- Expandable search, All/Active/Done segments, detailed status filters in sort sheet, list/board toggle.
+- Three-row cards retain details and quick actions; summary hides zero progress and absent deadlines. Today shows actionable next tasks.
+- Existing storage, import, security and backup format unchanged. Uses local Inter/Geist/Instrument Serif if installed, otherwise system/Georgia fallbacks; no external fonts loaded.
+- Brief ended mid-card specification; third row combines progress and priority/deadline/status. Optional pinning not added.
+- JavaScript syntax and static ID references checked; live browser and deployment testing pending.
+
 # Workspace v2
 - Compact app bar with custom monogram, time-based greeting and real project/task/deadline totals.
 - Task completion ring; positive-only stat chips; counted status filters and sort sheet.
