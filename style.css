@@ -150,3 +150,15 @@ body > nav.bottom{position:fixed!important;top:auto!important;left:0!important;r
 .dashboard.stats .chart-legend button b{font-size:15px}
 .dashboard.stats .stat-chips:empty{display:none}
 @media(max-width:680px){.dashboard.stats{padding:12px 0 16px}.dashboard.stats .project-chart{gap:24px}.dashboard.stats .chart-donut{width:min(204px,65vw);height:min(204px,65vw)}}
+
+/* Compact mobile overview: bring the project circle closer to the hero. */
+@media(max-width:680px){
+ main{row-gap:6px}
+ .intro{padding-top:14px;padding-bottom:0}
+ .intro h1{margin-bottom:10px}
+ .intro p{margin-bottom:16px}
+ .dashboard.stats{padding:0 0 12px;gap:8px;margin-top:0}
+ .dashboard.stats .project-chart{padding:4px 0!important;gap:16px}
+ .dashboard.stats .chart-top{margin:0}
+ .dashboard.stats .chart-legend{margin-top:2px}
+}
