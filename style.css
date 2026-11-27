@@ -114,3 +114,17 @@ main,#projects{min-width:0;max-width:100%;overflow:visible}
 .scroll-hint{gap:12px}.scroll-controls{display:flex;gap:8px}.scroll-controls button{width:40px;height:40px;border:1px solid #ffffff90;border-radius:50%;background:#fff;color:#a84b00;font-size:21px;box-shadow:0 4px 12px #0001}
 @media(max-width:680px){#list:not(.board){grid-auto-columns:minmax(230px,85%)}body{background-attachment:scroll}.glass-panel{min-height:calc(100dvh - 32px)}}
 dialog{overflow-y:auto;touch-action:auto;max-height:88dvh}
+
+/* Restore the floating bottom navigation without affecting native scrolling. */
+body{padding-bottom:calc(116px + env(safe-area-inset-bottom))}
+.bottom{position:fixed;inset:auto auto calc(16px + env(safe-area-inset-bottom)) 50%;transform:translateX(-50%);width:min(440px,calc(100% - 32px));display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;justify-items:center;gap:3px;margin:0;padding:7px 10px;z-index:30;border:1px solid rgba(255,255,255,.65);border-radius:24px;background:rgba(255,255,255,.76);backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);box-shadow:0 12px 40px #38230f33,inset 0 1px 0 #fff9}
+.bottom .navitem{width:100%;min-width:0;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:5px 2px;font-size:10px;color:#655b51;border-radius:15px}
+.bottom .navitem svg{display:block;width:21px;height:21px}
+.bottom .navitem[aria-current=page]{color:#a84b00;background:#fff0df}
+.bottom .nav-add{display:grid;place-items:center;width:50px;height:50px;min-height:50px;transform:none;border-radius:50%;background:#ff7a00;color:#1e1e1e;box-shadow:0 5px 18px #ff7a004d}
+body.dark .bottom{background:rgba(33,29,25,.88);border-color:#ffffff40}
+body.dark .bottom .navitem{color:#eee5dc}
+body.dark .bottom .navitem[aria-current=page]{color:#ffb46c;background:#ffffff14}
+#toast{bottom:calc(106px + env(safe-area-inset-bottom))}
+@media(max-width:680px){body{padding-bottom:calc(104px + env(safe-area-inset-bottom))}.bottom{bottom:calc(10px + env(safe-area-inset-bottom));padding:5px 7px}.bottom .navitem{font-size:10px}.bottom .nav-add{width:46px;height:46px;min-height:46px}}
+@supports not ((backdrop-filter:blur(28px)) or (-webkit-backdrop-filter:blur(28px))){.bottom{background:#fff7ed}body.dark .bottom{background:#29211b}}
