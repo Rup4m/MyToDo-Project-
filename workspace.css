@@ -79,3 +79,48 @@ dialog{padding:24px;max-height:88dvh;color:#fff;background:var(--glass-highlight
 @supports (animation-timeline:view()){ @media(prefers-reduced-motion:no-preference){.project,.settings,footer{animation:glass-enter .5s ease both;animation-timeline:view();animation-range:entry 0% entry 12%}}}
 @keyframes glass-enter{from{opacity:.65;translate:0 10px}to{opacity:1;translate:0 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Liquid Glass — clear optical material, layered rim and spring interactions. */
+:root,body.dark{--paper:rgba(255,255,255,.06);--soft:rgba(255,255,255,.09);--line:rgba(255,255,255,.25);--liquid-spring:cubic-bezier(.34,1.56,.64,1);--liquid-rim:inset 1px 1px 0 rgba(255,255,255,.7),inset -1px -1px 0 rgba(255,255,255,.3),inset 0 0 20px rgba(255,255,255,.15),0 8px 32px rgba(0,0,0,.25);--liquid-shine:radial-gradient(ellipse at var(--shine-x,12%) var(--shine-y,0%),rgba(255,255,255,.23),transparent 48%);--liquid-edge:linear-gradient(135deg,rgba(255,255,255,.12),transparent 28%,transparent 72%,rgba(255,255,255,.08));--liquid-filter:blur(4px) saturate(180%);--overlay:rgba(0,0,0,.12)}
+body.dark{--overlay:rgba(0,0,0,.38);--paper:rgba(255,255,255,.04)}
+body{font-family:-apple-system,BlinkMacSystemFont,Inter,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body::before{filter:none;inset:0;background-position:center;background-size:cover}
+body::after{background:linear-gradient(145deg,rgba(8,26,48,.36),rgba(10,24,45,.46)),var(--overlay)}
+header,.intro,.dashboard.stats,.project,.settings,footer,.bottom,dialog,.search,.filters,.empty,.calendar-row,details,.board-lane,.stat-chip{background:var(--liquid-shine),var(--liquid-edge),var(--paper);border:1px solid var(--line);border-radius:32px;box-shadow:var(--liquid-rim);backdrop-filter:var(--liquid-filter);-webkit-backdrop-filter:var(--liquid-filter)}
+/* Refraction is confined to a masked rim layer; the central glass remains clear. */
+.liquid-refraction :is(header,.intro,.dashboard.stats,.project,.settings,footer,.bottom,dialog,.calendar-row)::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;backdrop-filter:url(#liquid-glass) saturate(180%);-webkit-mask-image:linear-gradient(#000 0 0),linear-gradient(#000 0 0);-webkit-mask-clip:content-box,border-box;-webkit-mask-composite:xor;mask-image:linear-gradient(#000 0 0),linear-gradient(#000 0 0);mask-clip:content-box,border-box;mask-composite:exclude;padding:7px;box-shadow:inset 2px 0 2px #ff607f44,inset -2px 0 2px #63bbff55;z-index:0}
+.intro,.dashboard.stats,.settings,footer,.calendar-row{position:relative}
+header,.bottom{border-radius:999px}
+header{padding:8px 14px;top:10px}
+.intro{padding:32px 24px}
+.intro h1{font-size:clamp(32px,5vw,60px);font-weight:800;letter-spacing:-.045em}
+.intro h1 em{color:#fff}
+h1,h2,.project-title,.navitem,.brand{ text-shadow:0 2px 9px rgba(0,0,0,.5)}
+.project{border-radius:32px;padding:20px;transition:transform .38s var(--liquid-spring),box-shadow .3s ease,border-color .3s ease;min-height:110px}
+.project-list{gap:16px}
+.primary,.secondary,.danger,.icon,header .icon,.section-tools .icon,.nav-add,body.dark .nav-add,.filters button{border-radius:999px;background:var(--liquid-shine),rgba(255,255,255,.07);border:1px solid var(--line);box-shadow:inset 1px 1px 0 #ffffff70,inset -1px -1px 0 #ffffff24,0 5px 16px #0002;backdrop-filter:blur(3px) saturate(180%);-webkit-backdrop-filter:blur(3px) saturate(180%);transition:transform .35s var(--liquid-spring),background .2s ease,box-shadow .25s ease;color:white}
+.primary,.nav-add,body.dark .nav-add{background:radial-gradient(ellipse at 18% 0%,#ffffff40,transparent 60%),linear-gradient(135deg,#0891b2aa,#2563eb99);color:white}
+.danger{color:var(--danger)}
+.filters .selected,.section-tools .icon[aria-pressed=true]{background:#ffffff26;box-shadow:inset 1px 1px 0 #ffffff80,0 5px 18px #0002}
+.filters,.search,.stat-chip,.calendar-row,details,.empty,.board-lane{border-radius:24px}
+.bottom{isolation:isolate;overflow:visible;gap:0}
+.bottom .navitem{position:relative;z-index:1;border-radius:999px;transition:color .2s ease,transform .35s var(--liquid-spring)}
+.bottom .navitem[aria-current=page]{background:transparent;box-shadow:none;color:white}
+.bottom .nav-add{position:relative;z-index:2}
+.liquid-tab-indicator{position:absolute;top:0;left:0;pointer-events:none;z-index:0;opacity:0;border-radius:999px;background:radial-gradient(ellipse at 15% 0%,#ffffff40,transparent 65%),#ffffff1c;border:1px solid #ffffff75;box-shadow:inset 1px 1px 0 #ffffffb0,inset -1px -1px 0 #ffffff40,inset 0 0 15px #ffffff20,0 4px 16px #0003;transition:transform .45s var(--liquid-spring),width .4s var(--liquid-spring),height .4s var(--liquid-spring),opacity .2s}
+.liquid-tab-indicator.ready{opacity:1}
+dialog{background:var(--liquid-shine),rgba(17,34,55,.38);border-radius:32px}
+dialog::backdrop{background:rgba(6,14,26,.28);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+dialog[open]{animation:liquid-open .4s var(--liquid-spring) both}
+@keyframes liquid-open{from{opacity:0;scale:.94;translate:0 12px}to{opacity:1;scale:1;translate:0 0}}
+label input,label textarea,label select,#importText,#detailBody select{background:#ffffff0f;border-radius:18px}
+.chart-donut:before,.ring:before{background:#1b3048}
+@media(hover:hover){.project:hover{transform:scale(1.03);box-shadow:var(--liquid-rim),0 0 24px #ffffff15}.primary:hover,.secondary:hover,.icon:hover,.danger:hover,.filters button:hover,.navitem:hover{transform:scale(1.03);box-shadow:inset 1px 1px 0 #ffffffaa,0 8px 24px #0003}}
+.project:active,.primary:active,.secondary:active,.icon:active,.danger:active,.filters button:active,.navitem:active{transform:scale(.96)}
+.nav-add:active{transform:translateY(-5px) scale(.96)}
+.project .card-target{backdrop-filter:none;-webkit-backdrop-filter:none;background:transparent;box-shadow:none;border:0}
+@media(min-width:1024px){.bottom{border-radius:32px}.bottom .navitem{border-radius:999px}}
+@media(max-width:1023px){.bottom{border-radius:999px;left:16px;right:16px;padding:6px 8px}.bottom .navitem{font-size:10px}.bottom .nav-add{width:46px;height:46px;transform:none}.bottom .nav-add:active{transform:scale(.96)}}
+@media(max-width:649px){header{border-radius:999px}.intro,.dashboard.stats,.settings,footer,dialog,.project{border-radius:26px}.intro{padding:24px 16px}.project{padding:16px}.shell{padding-inline:16px}.sheet{border-radius:32px 32px 0 0}}
+@supports not ((backdrop-filter:blur(4px)) or (-webkit-backdrop-filter:blur(4px))){header,.intro,.dashboard.stats,.project,.settings,footer,.bottom,dialog,.search,.filters,.empty,.calendar-row,details,.board-lane,.stat-chip{background:rgba(20,30,50,.88)}}
+@media(prefers-reduced-motion:reduce){.liquid-tab-indicator{transition:none}.project:hover,.project:active,.primary:hover,.primary:active,.secondary:hover,.secondary:active,.icon:hover,.icon:active{transform:none}}
