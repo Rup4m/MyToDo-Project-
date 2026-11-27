@@ -102,3 +102,15 @@ dialog{background:rgba(255,255,255,.72);backdrop-filter:blur(28px) saturate(140%
 @supports not ((backdrop-filter:blur(28px)) or (-webkit-backdrop-filter:blur(28px))){.glass-panel,dialog{background:rgba(255,255,255,.75)}body.dark .glass-panel{background:#29211bcc}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 [hidden]{display:none!important}.ring#ring[hidden]{display:grid!important}
+
+/* Restore native scrolling on touch screens and desktop. */
+html,body{height:auto;min-height:100%;overflow-y:visible;touch-action:auto}
+.glass-panel{height:auto;overflow:visible;animation-fill-mode:none}
+main,#projects{min-width:0;max-width:100%;overflow:visible}
+#list{width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;touch-action:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:none;overscroll-behavior-x:contain;scrollbar-width:auto}
+#list:not(.board){grid-auto-columns:clamp(250px,30%,340px)}
+#list:not(.board):has(.empty){display:block}
+#list .project,#list .card-target,#list .quick-menu,#list .board-lane{touch-action:auto}
+.scroll-hint{gap:12px}.scroll-controls{display:flex;gap:8px}.scroll-controls button{width:40px;height:40px;border:1px solid #ffffff90;border-radius:50%;background:#fff;color:#a84b00;font-size:21px;box-shadow:0 4px 12px #0001}
+@media(max-width:680px){#list:not(.board){grid-auto-columns:minmax(230px,85%)}body{background-attachment:scroll}.glass-panel{min-height:calc(100dvh - 32px)}}
+dialog{overflow-y:auto;touch-action:auto;max-height:88dvh}
