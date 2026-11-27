@@ -128,3 +128,8 @@ body.dark .bottom .navitem[aria-current=page]{color:#ffb46c;background:#ffffff14
 #toast{bottom:calc(106px + env(safe-area-inset-bottom))}
 @media(max-width:680px){body{padding-bottom:calc(104px + env(safe-area-inset-bottom))}.bottom{bottom:calc(10px + env(safe-area-inset-bottom));padding:5px 7px}.bottom .navitem{font-size:10px}.bottom .nav-add{width:46px;height:46px;min-height:46px}}
 @supports not ((backdrop-filter:blur(28px)) or (-webkit-backdrop-filter:blur(28px))){.bottom{background:#fff7ed}body.dark .bottom{background:#29211b}}
+
+/* Viewport-pinned dock: explicit offsets and safe-area fallbacks. */
+body > nav.bottom{position:fixed!important;top:auto!important;left:0!important;right:0!important;bottom:20px!important;bottom:calc(20px + env(safe-area-inset-bottom, 0px))!important;margin:0 auto!important;transform:none!important;width:calc(100% - 32px);max-width:440px;z-index:1000;display:grid!important}
+@media(max-width:680px){body > nav.bottom{bottom:24px!important;bottom:calc(24px + env(safe-area-inset-bottom, 0px))!important}body{padding-bottom:calc(128px + env(safe-area-inset-bottom, 0px))}}
+#toast{z-index:1001;bottom:calc(116px + env(safe-area-inset-bottom, 0px))}
