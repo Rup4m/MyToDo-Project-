@@ -133,3 +133,20 @@ body.dark .bottom .navitem[aria-current=page]{color:#ffb46c;background:#ffffff14
 body > nav.bottom{position:fixed!important;top:auto!important;left:0!important;right:0!important;bottom:20px!important;bottom:calc(20px + env(safe-area-inset-bottom, 0px))!important;margin:0 auto!important;transform:none!important;width:calc(100% - 32px);max-width:440px;z-index:1000;display:grid!important}
 @media(max-width:680px){body > nav.bottom{bottom:24px!important;bottom:calc(24px + env(safe-area-inset-bottom, 0px))!important}body{padding-bottom:calc(128px + env(safe-area-inset-bottom, 0px))}}
 #toast{z-index:1001;bottom:calc(116px + env(safe-area-inset-bottom, 0px))}
+
+/* Overview: replace task progress visual with the existing live project distribution. */
+.dashboard.stats .ring-wrap{display:none!important}
+.dashboard.stats{gap:12px;justify-content:center;align-items:center}
+.dashboard.stats .project-chart{display:grid;grid-template-columns:1fr;justify-items:center;width:100%;max-width:360px;background:transparent;border:0;padding:12px 0!important;gap:20px;order:-1}
+.dashboard.stats .project-chart[hidden]{display:none!important}
+.dashboard.stats .chart-top{display:flex;justify-content:center;gap:8px;width:100%;margin:0;text-align:center;font-size:12px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted)}
+.dashboard.stats .chart-top span:last-child{display:none}
+.dashboard.stats .chart-donut{width:204px;height:204px;box-shadow:0 0 0 9px #ffffff30,0 0 0 10px #ffffff70,0 16px 32px #81552a1c;animation:ring-in .7s ease both}
+.dashboard.stats .chart-donut:before{inset:15px;background:#fff}
+.dashboard.stats .chart-center strong{font-size:52px;font-weight:700;letter-spacing:-3px;line-height:1.1;color:#1e1e1e}
+.dashboard.stats .chart-center span{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.3px;color:#655b51}
+.dashboard.stats .chart-legend{width:100%;max-width:280px;gap:4px;background:#ffffff50;border:1px solid #ffffff70;border-radius:16px;padding:10px 14px;margin:0}
+.dashboard.stats .chart-legend button{min-height:34px;font-size:13px;grid-template-columns:10px minmax(0,1fr) auto}
+.dashboard.stats .chart-legend button b{font-size:15px}
+.dashboard.stats .stat-chips:empty{display:none}
+@media(max-width:680px){.dashboard.stats{padding:12px 0 16px}.dashboard.stats .project-chart{gap:24px}.dashboard.stats .chart-donut{width:min(204px,65vw);height:min(204px,65vw)}}
